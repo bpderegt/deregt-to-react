@@ -1,0 +1,24 @@
+{
+  "name": "deregt-to-react",
+  "version": "1.1.0",
+  "description": "quick react environmental setup",
+  "main": "setup.bash",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "bash setup.bash"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bpderegt/deregt-to-react.git"
+  },
+  "keywords": [
+    "environmental",
+    "setup"
+  ],
+  "author": "Brian de Regt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bpderegt/deregt-to-react/issues"
+  },
+  "homepage": "https://github.com/bpderegt/deregt-to-react#readme"
+}
