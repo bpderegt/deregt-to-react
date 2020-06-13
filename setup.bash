@@ -5,7 +5,8 @@ echo $'\e[1;33m'Enter Your App Info Here:$'\e[0m'
 npm init
 
 echo $'\e[0;32m'installing dependencies$'\e[0m'
-echo $'\e[1;31m'WILL STICK ON \"postinstall: sill install executeActions\" for 1 minute [i am sorry]$'\e[0m'
+echo $'\e[1;31m'WILL STICK ON [ $'\e[0m'postinstall: $'\e[0;30m'$'\e[47m'sill$'\e[0m' $'\e[0;35m'install$'\e[0m' executeActions$'\e[1;31m' ] FOR 1 MINUTE$'\e[0m'
+echo $'\e[0;34m'i am sorry :\($'\e[0m'
 npm install --no-audit react react-dom axios express path nodemon
 
 echo $'\e[0;32m'installing devDependencies$'\e[0m'
@@ -14,13 +15,13 @@ npm install --save-dev @babel/core @babel/cli @babel/preset-react @babel/preset-
 echo $'\e[0;32m'writing webpack.config.js$'\e[0m'
 cat > webpack.config.js <<- "EOF"
 const path = require('path');
-const webpack = require('webpack')
+
 module.exports = {
   entry: `${__dirname}/client/src/Index.jsx`,
   module: {
     rules: [
       {
-        test: /\.jsx$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: "babel-loader"
       }
@@ -30,7 +31,7 @@ module.exports = {
     filename: 'bundle.js',
     path: `${__dirname}/public`
   }
-}
+};
 EOF
 
 echo $'\e[0;32m'writing .babelrc$'\e[0m'
@@ -41,6 +42,7 @@ EOF
 echo $'\e[0;32m'writing .gitignore$'\e[0m'
 cat > .gitignore <<- "EOF"
 node_modules
+bundle.js
 .
 EOF
 
@@ -48,12 +50,16 @@ echo $'\e[0;32m'writing server$'\e[0m'
 mkdir server
 cat > server/index.js <<- "EOF"
 const express = require('express');
+const path = require('path');
 const app = express();
 const port = 3127;
-app.use(express.static('public'))
+
+app.use(express.static(path.join(__dirname, '../public')));
+
 app.get('/', (req, res) => {
   res.end();
 });
+
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
 EOF
 
@@ -65,7 +71,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App.jsx';
 
-ReactDOM.render(<App />, document.getElementById('app'))
+ReactDOM.render(<App />, document.getElementById('app'));
 EOF
 
 mkdir client/src/components
