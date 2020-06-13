@@ -1,6 +1,3 @@
-#!/bin/bash
-chmod +x setup.bash
-export PATH=$PATH:/node_modules/deregt-to-react
 cd ..
 cd ..
 
@@ -9,7 +6,7 @@ npm init
 
 echo $'\e[0;32m'installing dependencies$'\e[0m'
 echo $'\e[1;31m'WILL STICK ON \"postinstall: sill install executeActions\" for 1 minute [i am sorry]$'\e[0m'
-npm install react react-dom axios express path nodemon
+npm install --no-audit react react-dom axios express path nodemon
 
 echo $'\e[0;32m'installing devDependencies$'\e[0m'
 npm install --save-dev @babel/core @babel/cli @babel/preset-react @babel/preset-env babel-loader webpack webpack-cli jest enzyme
@@ -121,6 +118,11 @@ cat > public/index.html <<- "EOF"
     <script src="bundle.js"></script>
   </body>
 </html>
+EOF
+
+echo $'\e[0;32m'adding README.md$'\e[0m'
+cat > README.md <<- "EOF"
+Make something cool!
 EOF
 
 echo $'\e[0;32m'adding scripts$'\e[0m'
