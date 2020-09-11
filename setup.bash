@@ -131,34 +131,38 @@ cat > README.md <<- "EOF"
 Make something cool!
 EOF
 
-echo $'\e[0;32m'adding scripts$'\e[0m'
+echo $'\e[0;32m'adding scripts, deleting unnecessary packages$'\e[0m'
 cat > newPackage.js <<- "EOF"
 const fs = require('fs');
 const path = require('path');
 const file = path.join(__dirname, 'package.json');
 fs.readFile(file, 'utf-8', (error, read) => {
-  if (error) console.log(error);
-  read = read.split('\n');
-  let newPackage = ``;
-  let searching = true;
-  read.map((line, i) => {
-    words = line.split(' ');
-    if (searching) {
-      for (let i = 0; i < words.length; i++) {
-        if (words[i] === '"test":') {
-          newPackage += `    "start": "nodemon server/index.js",\n    "react-dev": "webpack -d -w"\n`;
-          searching = false;
-          break;
-        }
+  if (error) {
+    console.log(error);
+  } else {
+    lines = read.split('\n');
+    let newPackage = ``;
+    let scriptChange = false;
+    let deregtToReactDelete = false;
+    let pathDelete = false;
+    lines.map((line, i) => {
+      if (!scriptChange && line.split(' ')[4] === `"test":`) {
+        newPackage += `${line},\n    "start": "nodemon server/index.js",\n    "react-dev": "webpack -d -w"\n`;
+        scriptChange = true;
+      } else if (!deregtToReactDelete && line.split(' ')[4] === `"deregt-to-react":`) {
+        deregtToReactDelete = true;
+      } else if (!pathDelete && line.split(' ')[4] === `"path":`) {
+        pathDelete = true;
+      } else {
+        newPackage += `${line}\n`;
       }
-      if (searching) newPackage += `${line}\n`
-    } else {
-      newPackage += `${line}\n`
-    }
-  });
-  fs.writeFile(file, newPackage, 'utf-8', (err, succ) => {
-    if (err) console.log(err)
-  });
+    });
+    fs.writeFile(file, newPackage, 'utf-8', (error, success) => {
+      if (error) {
+        console.log(error);
+      }
+    });
+  }
 });
 EOF
 node newPackage.js
