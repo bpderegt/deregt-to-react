@@ -161,7 +161,6 @@ fs.readFile(file, 'utf-8', (error, read) => {
 EOF
 node newPackage.js
 rm newPackage.js
-npm uninstall deregt-to-react
 
 npm run react-dev & npm start & open http://localhost:3127/ & echo $'\e[1;32m'DONE!$'\e[0m'
 echo ' '
