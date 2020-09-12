@@ -143,16 +143,10 @@ fs.readFile(file, 'utf-8', (error, read) => {
     lines = read.split('\n');
     let newPackage = ``;
     let scriptChange = false;
-    let deregtToReactDelete = false;
-    let pathDelete = false;
     lines.map((line, i) => {
       if (!scriptChange && line.split(' ')[4] === `"test":`) {
         newPackage += `${line},\n    "start": "nodemon server/index.js",\n    "react-dev": "webpack -d -w"\n`;
         scriptChange = true;
-      } else if (!deregtToReactDelete && line.split(' ')[4] === `"deregt-to-react":`) {
-        deregtToReactDelete = true;
-      } else if (!pathDelete && line.split(' ')[4] === `"path":`) {
-        pathDelete = true;
       } else {
         newPackage += `${line}\n`;
       }
@@ -167,6 +161,7 @@ fs.readFile(file, 'utf-8', (error, read) => {
 EOF
 node newPackage.js
 rm newPackage.js
+npm uninstall deregt-to-react
 
 npm run react-dev & npm start & open http://localhost:3127/ & echo $'\e[1;32m'DONE!$'\e[0m'
 echo ' '
