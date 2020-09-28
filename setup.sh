@@ -3,6 +3,41 @@ cd ..
 
 echo $'\e[1;33m'Enter Your App Info Here:$'\e[0m'
 npm init
+# echo $'\e[0;32m'writing package.json$'\e[0m'
+# cat > package.json <<- "EOF"
+# {
+#   "name": "deregt-to-react",
+#   "version": "1.0.0",
+#   "description": "",
+#   "main": "index.js",
+#   "dependencies": {
+#     "axios": "^0.20.0",
+#     "express": "^4.17.1",
+#     "nodemon": "^2.0.4",
+#     "path": "^0.12.7",
+#     "react": "^16.13.1",
+#     "react-dom": "^16.13.1"
+#   },
+#   "devDependencies": {
+#     "@babel/cli": "^7.11.6",
+#     "@babel/core": "^7.11.6",
+#     "@babel/preset-env": "^7.11.5",
+#     "@babel/preset-react": "^7.10.4",
+#     "babel-loader": "^8.1.0",
+#     "enzyme": "^3.11.0",
+#     "jest": "^26.4.2",
+#     "webpack": "^4.44.1",
+#     "webpack-cli": "^3.3.12"
+#   },
+#   "scripts": {
+#     "test": "echo \"Error: no test specified\" && exit 1",
+#     "start": "nodemon server/index.js",
+#     "react-dev": "webpack -d -w"
+#   },
+#   "author": "",
+#   "license": "ISC"
+# }
+# EOF
 
 echo $'\e[0;32m'installing dependencies$'\e[0m'
 echo $'\e[1;31m'WILL STICK ON [ $'\e[0m'postinstall: $'\e[0;30m'$'\e[47m'sill$'\e[0m' $'\e[0;35m'install$'\e[0m' executeActions$'\e[1;31m' ] FOR 1 MINUTE$'\e[0m'
@@ -162,7 +197,8 @@ EOF
 node newPackage.js
 rm newPackage.js
 
-npm run react-dev & npm start & open http://localhost:3127/ & echo $'\e[1;32m'DONE!$'\e[0m'
+npm run react-dev & npm start & open http://localhost:3127/ & npm uninstall deregt-to-react & echo $'\e[1;32m'DONE!$'\e[0m'
+
 echo ' '
 echo $'\e[1;33m' - npm run commands -$'\e[0m'
 echo $'\e[0;34m'server: $'\e[0;33m'npm start$'\e[0m'
